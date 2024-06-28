@@ -1,5 +1,6 @@
 package com.ches.entrylog;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -27,9 +28,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                  String getuname=e1.getText().toString();
-                  String getpass=e2.getText().toString();
-                    Toast.makeText(getApplicationContext(),getuname+" "+getpass,Toast.LENGTH_SHORT).show();
+                  String getUname=e1.getText().toString();
+                  String getPass=e2.getText().toString();
+                  if(getUname.equals("admin")&& getPass.equals("12345"))
+                  {
+                      Intent i=new Intent(getApplicationContext(), LogEntry.class);
+                      startActivity(i);
+                  }
+                  else
+                  {
+
+                      Toast.makeText(getApplicationContext(),"invalid credentials",Toast.LENGTH_SHORT).show();
+                  }
                 }
                 catch(Exception e)
                 {

@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:textAllCaps="false"
-        android:background="#DBCD55"
+        android:background="#EDD933"
         android:id="@+id/logbtn"/>
 
 </LinearLayout>
