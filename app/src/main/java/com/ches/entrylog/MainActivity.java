@@ -1,6 +1,7 @@
 package com.ches.entrylog;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -21,6 +22,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        SharedPreferences pref =getSharedPreferences("logapp",MODE_PRIVATE);
+        String username=pref.getString("user",null);
+        if(username!=null)
+        {
+            Intent i=new Intent(getApplicationContext(),LogEntry.class);
+            startActivity(i);
+        }
         e1=(EditText) findViewById(R.id.uname);
         e2=(EditText) findViewById(R.id.pass);
         b1=(AppCompatButton) findViewById(R.id.logbtn);
@@ -32,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
                   String getPass=e2.getText().toString();
                   if(getUname.equals("admin")&& getPass.equals("12345"))
                   {
+                      SharedPreferences pref =getSharedPreferences("logapp",MODE_PRIVATE);
+                      SharedPreferences.Editor editor = pref.edit();
+                      editor.putString("user","admin");
+                      editor.apply();
                       Intent i=new Intent(getApplicationContext(), LogEntry.class);
                       startActivity(i);
                   }
